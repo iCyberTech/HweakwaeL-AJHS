@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EResults</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <div id="login-container">
+            <h1>EResults</h1>
+            <input type="text" id="username" placeholder="Enter Username">
+            <input type="password" id="password" placeholder="Enter Password">
+            <button id="login-button">Login</button>
+            <p id="error-message" class="hidden">Check username and password and try again...</p>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    let validUsers = {};
+
+    // Load users from JSON file
+    fetch('users.json')
+        .then(response => response.json())
+        .then(data => {
+            validUsers = data;
+        })
+        .catch(error => {
+            console.error('Error loading users:', error);
+        });
+
+    document.getElementById('login-button').addEventListener('click', function() {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        // Check if the username and password match
+        if (validUsers[username] === password) {
+            // Redirect to portal.html
+            window.location.href = 'portal.html';
+        } else {
+            // Show error message
+            document.getElementById('error-message').classList.remove('hidden');
+        }
+    });
+});
+    </script>
+</body>
+</html>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    background-image: url('a1.jpg');
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+#login-container {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+#login-container h1 {
+    font-size: 56px;
+    font-weight: bold;
+    color: black;
+    text-shadow: 0 5px 5px gray;
+    margin-bottom: 20px;
+}
+
+#login-container input {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 24px;
+    border-radius: 10px;
+    border: 1px solid gray;
+    box-shadow: 0 5px 5px gray;
+}
+
+#login-container button {
+    font-size: 24px;
+    padding: 10px;
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 5px 5px gray;
+    cursor: pointer;
+}
+
+#login-container button:hover {
+    background: darkgray;
+}
+
+.hidden {
+    display: none;
+}
+
+#error-message {
+    color: red;
+    margin-top: 20px;
+}
+</style>

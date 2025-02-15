@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Students Portal</title>
+  <style>
+    /* General styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9;
+    }
+
+    /* Navigation bar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #2d89ef;
+      color: white;
+      padding: 15px 20px;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    .navbar a:hover {
+      text-decoration: underline;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      background-color: #e3f2fd;
+      padding: 50px 20px;
+    }
+
+    .hero h1 {
+      color: #2d89ef;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      color: #555;
+      font-size: 1.2em;
+    }
+
+    .hero button {
+      background-color: #2d89ef;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+
+    .hero button:hover {
+      background-color: #1e5bbf;
+    }
+
+    /* Quick Links Section */
+    .quick-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 30px 0;
+    }
+
+    .quick-links .card {
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      margin: 10px;
+      padding: 20px;
+      width: 280px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: transform 0.2s ease;
+    }
+
+    .quick-links .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .quick-links .card img {
+      width: 100px;
+      height: 100px;
+      margin-bottom: 10px;
+    }
+
+    .quick-links .card h3 {
+      margin-bottom: 10px;
+      color: #2d89ef;
+    }
+
+    .quick-links .card p {
+      color: #555;
+    }
+
+    /* Footer */
+    .footer {
+      background-color: #2d89ef;
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+      margin-top: 20px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 1.8em;
+      }
+
+      .quick-links {
+        flex-direction: column;
+      }
+
+      .quick-links .card {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <div class="navbar">
+    <div class="logo">
+      <h2>Student Portal</h2>
+    </div>
+    <div>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <h1>Welcome To Your Student's Portal</h1>
+    <p>Your one-stop platform for accessing school resources, updates, and more.</p>
+    <button onclick="alert('Explore our features!')">Announcement 📣</button>
+  </div>
+
+  <!-- Quick Links Section -->
+  <div class="quick-links">
+    <div class="card">
+      <img src="https://via.placeholder.com/100" alt="Assignments">
+      <h3>Assignments</h3>
+      <p>Access and submit your assignments with ease.</p>
+    </div>
+    <div class="card">
+      <img src="https://via.placeholder.com/100" alt="Timetable">
+      <h3>Timetable</h3>
+      <p>Stay updated with your class schedules.</p>
+    </div>
+    <div class="card">
+      <img src="https://via.placeholder.com/100" alt="Results">
+      <h3>Results</h3>
+      <p>Check your academic performance anytime.</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>&copy; 2025 School Students Portal. All Rights Reserved.</p>
+  </div>
+</body>
+</html>
