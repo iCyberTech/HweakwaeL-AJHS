@@ -16,11 +16,52 @@
       </div>
     </div>
   </div>
-  <script src="script.js"></script>
+  <script>// Sample JSON data for chatbot responses
+    const chatbotResponses = {
+      "Hello": "👋 Hi there! How can I assist you today?",
+      "Hi": "🤔 Sure! You can ask me about the following: Teachers, Leave,Fees.",
+      "Teachers": "📄Below are list of available Teachers.",
+      "Leave": "✅ You can apply for a leave of absence using the link below!, ",
+      "Fees": "🏥 Below is a link to view fees update. Feel free to ask more questions!",
+      "default": "🤷‍♂️ Hmm, I didn't quite get that. Try asking about 'Teachers', 'Contacts', 'Fees', or 'Leave'."
+    };
+    
+    // Chatbot functionality
+    const chatOutput = document.getElementById("chat-output");
+    const userInput = document.getElementById("user-input");
+    const sendBtn = document.getElementById("send-btn");
+    
+    sendBtn.addEventListener("click", () => {
+      const userMessage = userInput.value.trim().toLowerCase();
+      if (userMessage) {
+        addMessage("You", userMessage);
+        userInput.value = "";
+    
+        // Simulate typing animation
+        const typingDiv = document.createElement("div");
+        typingDiv.textContent = "Bot is typing...";
+        typingDiv.style.fontStyle = "italic";
+        chatOutput.appendChild(typingDiv);
+        chatOutput.scrollTop = chatOutput.scrollHeight;
+    
+        setTimeout(() => {
+          chatOutput.removeChild(typingDiv); // Remove typing animation
+          const botResponse = chatbotResponses[userMessage] || chatbotResponses["default"];
+          addMessage("Bot", botResponse);
+        }, 1000); // Delay for 1 second
+      }
+    });
+    
+    function addMessage(sender, message) {
+      const messageDiv = document.createElement("div");
+      messageDiv.textContent = `${sender}: ${message}`;
+      chatOutput.appendChild(messageDiv);
+      chatOutput.scrollTop = chatOutput.scrollHeight; // Scroll to the bottom
+    }</script>
 </body>
 </html>
 <style>
-    /* styles.css */
+    /* General styles */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -52,6 +93,29 @@ body {
   overflow-y: auto;
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Chat message styles */
+#chat-output div {
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 80%;
+  word-wrap: break-word;
+}
+
+#chat-output div:nth-child(odd) {
+  align-self: flex-start;
+  background-color: #f1f1f1;
+  color: #333;
+}
+
+#chat-output div:nth-child(even) {
+  align-self: flex-end;
+  background-color: #007bff;
+  color: #fff;
 }
 
 .chat-input {
@@ -80,39 +144,3 @@ body {
   background: #0056b3;
 }
 </style>
-
-<script>
-    // script.js
-
-// Sample JSON data for chatbot responses
-const chatbotResponses = {
-  "hello": "Hi there! How can I assist you today?",
-  "help": "Sure! You can ask me about the following forms: Form A, Form B, Form C.",
-  "form a": "Form A is used for tax filing purposes.",
-  "form b": "Form B is used for employment verification.",
-  "form c": "Form C is used for health insurance applications.",
-  "default": "You can iput the following promts for a valid responds.About Contacts Fees Leave"
-};
-
-// Chatbot functionality
-const chatOutput = document.getElementById("chat-output");
-const userInput = document.getElementById("user-input");
-const sendBtn = document.getElementById("send-btn");
-
-sendBtn.addEventListener("click", () => {
-  const userMessage = userInput.value.trim().toLowerCase();
-  if (userMessage) {
-    addMessage("You", userMessage);
-    const botResponse = chatbotResponses[userMessage] || chatbotResponses["default"];
-    addMessage("Bot", botResponse);
-    userInput.value = "";
-  }
-});
-
-function addMessage(sender, message) {
-  const messageDiv = document.createElement("div");
-  messageDiv.textContent = `${sender}: ${message}`;
-  chatOutput.appendChild(messageDiv);
-  chatOutput.scrollTop = chatOutput.scrollHeight; // Scroll to the bottom
-}
-</script>
