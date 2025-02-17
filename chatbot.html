@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chatbot</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="chatbot-container">
+    <div class="chat-window">
+      <div id="chat-output"></div>
+      <div class="chat-input">
+        <input type="text" id="user-input" placeholder="Type your message here...">
+        <button id="send-btn">Send</button>
+      </div>
+    </div>
+  </div>
+  <script>// Sample JSON data for chatbot responses
+    const chatbotResponses = {
+      "hello": "👋 Hi there! How can I assist you today?",
+      "hi": "🤔 Sure! You can ask me about the following: Teachers, Leave,Fees.",
+      "teachers": "📄Below are list of available Teachers.",
+      "leave": "✅ You can apply for a leave of absence using the link below!, ",
+      "fees": "🏥 Below is a link to view fees update. Feel free to ask more questions!",
+      "default": "🤷‍♂️ Hmm, I didn't quite get that. Try asking about 'Teachers', 'Contacts', 'Fees', or 'Leave'.",
+    };
+    
+    // Chatbot functionality
+    const chatOutput = document.getElementById("chat-output");
+    const userInput = document.getElementById("user-input");
+    const sendBtn = document.getElementById("send-btn");
+    
+    sendBtn.addEventListener("click", () => {
+      const userMessage = userInput.value.trim().toLowerCase();
+      if (userMessage) {
+        addMessage("You", userMessage);
+        userInput.value = "";
+    
+        // Simulate typing animation
+        const typingDiv = document.createElement("div");
+        typingDiv.textContent = "Bot is typing...";
+        typingDiv.style.fontStyle = "italic";
+        chatOutput.appendChild(typingDiv);
+        chatOutput.scrollTop = chatOutput.scrollHeight;
+    
+        setTimeout(() => {
+          chatOutput.removeChild(typingDiv); // Remove typing animation
+          const botResponse = chatbotResponses[userMessage] || chatbotResponses["default"];
+          addMessage("Bot", botResponse);
+        }, 1000); // Delay for 1 second
+      }
+    });
+    
+    function addMessage(sender, message) {
+      const messageDiv = document.createElement("div");
+      messageDiv.textContent = `${sender}: ${message}`;
+      chatOutput.appendChild(messageDiv);
+      chatOutput.scrollTop = chatOutput.scrollHeight; // Scroll to the bottom
+    }</script>
+</body>
+</html>
+<style>
+    /* General styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f4f4f4;
+}
+
+.chatbot-container {
+  width: 400px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.chat-window {
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+}
+
+#chat-output {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Chat message styles */
+#chat-output div {
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 80%;
+  word-wrap: break-word;
+}
+
+#chat-output div:nth-child(odd) {
+  align-self: flex-start;
+  background-color: #f1f1f1;
+  color: #333;
+}
+
+#chat-output div:nth-child(even) {
+  align-self: flex-end;
+  background-color: #007bff;
+  color: #fff;
+}
+
+.chat-input {
+  display: flex;
+  padding: 10px;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.chat-input button {
+  margin-left: 10px;
+  padding: 10px 20px;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.chat-input button:hover {
+  background: #0056b3;
+}
+</style>
