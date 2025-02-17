@@ -23,16 +23,6 @@
       padding: 15px 20px;
     }
 
-    .navbar a {
-      color: white;
-      text-decoration: none;
-      margin: 0 10px;
-    }
-
-    .navbar a:hover {
-      text-decoration: underline;
-    }
-
     /* Hero Section */
     .hero {
       text-align: center;
@@ -53,15 +43,24 @@
     .hero button {
       background-color: #2d89ef;
       color: white;
-      padding: 10px 20px;
+      padding: 15px 30px;
       border: none;
       border-radius: 5px;
-      font-size: 1em;
+      font-size: 1.2em;
       cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .hero button:hover {
       background-color: #1e5bbf;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero button:active {
+      transform: translateY(1px);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     }
 
     /* Quick Links Section */
@@ -103,6 +102,99 @@
       color: #555;
     }
 
+    /* Popup Modal */
+    .popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .popup-content {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .popup-content button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .popup-content button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .popup-content button:active {
+      transform: translateY(1px);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Chatbot Avatar */
+    .chatbot-avatar {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background: url('https://via.placeholder.com/60') no-repeat center center;
+      background-size: cover;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .chatbot-window {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 300px;
+      height: 400px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      display: none;
+      flex-direction: column;
+    }
+
+    .chatbot-window iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 10px;
+    }
+
+    .chatbot-window .close-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #ff5c5c;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 25px;
+      height: 25px;
+      cursor: pointer;
+      font-size: 1em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
     /* Footer */
     .footer {
       background-color: #2d89ef;
@@ -134,42 +226,78 @@
     <div class="logo">
       <h2>Student Portal</h2>
     </div>
-    <div>
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </div>
   </div>
 
   <!-- Hero Section -->
   <div class="hero">
     <h1>Welcome To Your Student's Portal</h1>
     <p>Your one-stop platform for accessing school resources, updates, and more.</p>
-    <button onclick="alert('Explore our features!')">Announcement 📣</button>
+    <button onclick="openPopup()">Explore</button>
   </div>
 
   <!-- Quick Links Section -->
   <div class="quick-links">
-    <div class="card">
+    <div class="card" onclick="window.location.href='https://example.com/assignments'">
       <img src="https://via.placeholder.com/100" alt="Assignments">
       <h3>Assignments</h3>
       <p>Access and submit your assignments with ease.</p>
     </div>
-    <div class="card">
-      <img src="https://via.placeholder.com/100" alt="Timetable">
-      <h3>Timetable</h3>
+    <div class="card" onclick="window.location.href='https://example.com/calendar'">
+      <img src="https://via.placeholder.com/100" alt="Calendar">
+      <h3>Calendar</h3>
       <p>Stay updated with your class schedules.</p>
     </div>
-    <div class="card">
+    <div class="card" onclick="window.location.href='https://example.com/results'">
       <img src="https://via.placeholder.com/100" alt="Results">
       <h3>Results</h3>
       <p>Check your academic performance anytime.</p>
     </div>
   </div>
 
+  <!-- Popup Modal -->
+  <div class="popup" id="popup">
+    <div class="popup-content">
+      <button onclick="alert('Read Section')">Read</button>
+      <button onclick="alert('Quiz Section')">Quiz</button>
+      <button onclick="alert('Games Section')">Games</button>
+      <button onclick="closePopup()">Close</button>
+    </div>
+  </div>
+
+  <!-- Chatbot Avatar -->
+  <div class="chatbot-avatar" onclick="openChatbot()"></div>
+
+  <!-- Chatbot Window -->
+  <div class="chatbot-window" id="chatbot-window">
+    <button class="close-button" onclick="closeChatbot()">×</button>
+    <iframe src="https://example.com/chatbot"></iframe>
+  </div>
+
   <!-- Footer -->
   <div class="footer">
     <p>&copy; 2025 School Students Portal. All Rights Reserved.</p>
   </div>
+
+  <script>
+    // Open the popup
+    function openPopup() {
+      document.getElementById('popup').style.display = 'flex';
+    }
+
+     // Close the popup
+     function closePopup() {
+      document.getElementById('popup').style.display = 'none';
+    }
+
+    // Open the chatbot window
+    function openChatbot() {
+      document.getElementById('chatbot-window').style.display = 'flex';
+    }
+
+    // Close the chatbot window
+    function closeChatbot() {
+      document.getElementById('chatbot-window').style.display = 'none';
+    }
+  </script>
 </body>
 </html>
