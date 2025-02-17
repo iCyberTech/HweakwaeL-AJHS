@@ -48,21 +48,29 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             z-index: 1000;
+            max-width: 90%;
+            width: 600px;
         }
         .popup h2 {
             margin-top: 0;
             color: #4CAF50;
         }
         .popup ul {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Responsive grid */
+            gap: 10px; /* Space between grid items */
             list-style-type: none;
             padding: 0;
+            margin: 0;
         }
         .popup ul li {
-            margin: 10px 0;
+            margin: 0; /* Remove vertical margin */
+            list-style: none; /* Remove bullet points */
         }
         .popup ul li a {
-            display: inline-block; /* Make links look like buttons */
-            padding: 10px 15px;
+            display: block; /* Ensure links take up the full grid cell */
+            text-align: center; /* Center text inside the grid cell */
+            padding: 10px;
             background-color: #007BFF;
             color: white;
             text-decoration: none;
@@ -113,12 +121,10 @@
             <li><a href="https://example.com/course1" target="_blank">Course 1</a></li>
             <li><a href="https://example.com/course2" target="_blank">Course 2</a></li>
             <li><a href="https://example.com/course3" target="_blank">Course 3</a></li>
-            
         </ul>
         <button onclick="closePopup()">Close</button>
     </div>
 
-    <!-- Popup for Class 2 -->
     <div id="class2" class="popup">
         <h2>Courses</h2>
         <ul>
@@ -232,7 +238,8 @@
         <button onclick="closePopup()">Close</button>
     </div>
 
-    
+    <!-- Add similar popups for other classes -->
+
     <div class="overlay" onclick="closePopup()"></div>
 
     <script>
