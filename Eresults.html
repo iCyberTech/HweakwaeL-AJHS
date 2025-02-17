@@ -39,8 +39,8 @@
                     const baseURL = "https://bit.ly/-121213";
                     const finalURL = `${baseURL}${username}`;
                     
-                    // Redirect to the constructed URL
-                    window.location.href = finalURL;
+                    // Open the URL in a new window
+                    window.open(finalURL, '_blank');
                 } else {
                     document.getElementById('error-message').classList.remove('hidden');
                 }
