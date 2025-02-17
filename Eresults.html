@@ -15,105 +15,100 @@
             <button id="login-button">Login</button>
             <p id="error-message" class="hidden">Check username and password and try again...</p>
         </div>
-        <iframe id="webview" class="hidden"></iframe>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let validUsers = {};
+
+            // Load users from JSON file
+            fetch('users.json')
+                .then(response => response.json())
+                .then(data => {
+                    validUsers = data;
+                })
+                .catch(error => {
+                    console.error('Error loading users:', error);
+                });
+
+            document.getElementById('login-button').addEventListener('click', function() {
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+
+                if (validUsers[username] === password) {
+                    // Construct the URL dynamically
+                    const baseURL = "https://bit.ly/-121213";
+                    const finalURL = `${baseURL}${username}`;
+                    
+                    // Redirect to the constructed URL
+                    window.location.href = finalURL;
+                } else {
+                    document.getElementById('error-message').classList.remove('hidden');
+                }
+            });
+        });
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('aa1.jpg');
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #login-container {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        #login-container h1 {
+            font-size: 56px;
+            font-weight: bold;
+            color: black;
+            text-shadow: 0 5px 5px gray;
+            margin-bottom: 20px;
+        }
+
+        #login-container input {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 24px;
+            border-radius: 10px;
+            border: 1px solid gray;
+            box-shadow: 0 5px 5px gray;
+        }
+
+        #login-container button {
+            font-size: 24px;
+            padding: 10px;
+            background: black;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            box-shadow: 0 5px 5px gray;
+            cursor: pointer;
+        }
+
+        #login-container button:hover {
+            background: darkgray;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #error-message {
+            color: red;
+            margin-top: 20px;
+        }
+    </style>
 </body>
 </html>
-<style>
-    body {
-    font-family: Arial, sans-serif;
-    background-image: url('aa1.jpg');
-    background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-}
-
-#login-container {
-    background: rgba(255, 255, 255, 0.8);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    text-align: center;
-}
-
-#login-container h1 {
-    font-size: 56px;
-    font-weight: bold;
-    color: black;
-    text-shadow: 0 5px 5px gray;
-    margin-bottom: 20px;
-}
-
-#login-container input {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    font-size: 24px;
-    border-radius: 10px;
-    border: 1px solid gray;
-    box-shadow: 0 5px 5px gray;
-}
-
-#login-container button {
-    font-size: 24px;
-    padding: 10px;
-    background: black;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    box-shadow: 0 5px 5px gray;
-    cursor: pointer;
-}
-
-#login-container button:hover {
-    background: darkgray;
-}
-
-#webview {
-    width: 100%;
-    height: 100%;
-    border: none;
-}
-
-.hidden {
-    display: none;
-}
-
-#error-message {
-    color: red;
-    margin-top: 20px;
-}
-</style>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-    let validUsers = {};
-
-    // Load users from JSON file
-    fetch('users.json')
-        .then(response => response.json())
-        .then(data => {
-            validUsers = data;
-        })
-        .catch(error => {
-            console.error('Error loading users:', error);
-        });
-
-    document.getElementById('login-button').addEventListener('click', function() {
-        const username = document.getElementById('username').value;
-        const password = document.getElementById('password').value;
-
-        if (validUsers[username] === password) {
-            const potentialURL = `https://bit.ly/-121213${username}`;
-            document.getElementById('login-container').classList.add('hidden');
-            document.getElementById('webview').classList.remove('hidden');
-            document.getElementById('webview').src = potentialURL;
-        } else {
-            document.getElementById('error-message').classList.remove('hidden');
-        }
-    });
-});
-</script>
